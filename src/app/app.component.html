@@ -1,0 +1,49 @@
+<div class="container">
+  <mat-toolbar color="primary">
+    <mat-button-toggle-group name="selectSortingAlgorithm" aria-label="Select sorting algorithm">
+      <mat-button-toggle (click)="doBubbleSort(currentItemsPositionValuesRef)">Bubble Sort</mat-button-toggle>
+      <mat-button-toggle title="Coming Soon..." disabled>Selection Sort</mat-button-toggle>
+      <mat-button-toggle title="Coming Soon..." disabled>Merge Sort</mat-button-toggle>
+      <mat-button-toggle title="Coming Soon..." disabled>Quick Sort</mat-button-toggle>
+      <mat-button-toggle title="Coming Soon..." disabled>Insertion Sort</mat-button-toggle>
+    </mat-button-toggle-group>
+    <button mat-raised-button (click)="randomize(currentItemsPositionValuesRef)" class="custom-button-style">Randomize</button>
+   <a href="https://github.com/rizwanpasha/search-algorithms-visualized" title="Checkout source @ Github.com" class="github-logo-style" target="_blank">
+    <img src="../assets/icons/GitHub_Logo.png" alt="Github Logo" height="48px" width="48px">
+   </a>
+  </mat-toolbar>
+  <section class="main-wrapper">
+    <ul class="grid-list">
+      <li [@listItemSortAnimation]="gridItemThreeState" id="grid-item grid-item-3" class="grid-item grid-item-3">
+        <img src="../assets/item-images/donuts/vertical/donut_3.png" alt="3">
+      </li>
+      <li [@listItemSortAnimation]="gridItemTenState" class="grid-item grid-item-10">
+        <img src="../assets/item-images/donuts/vertical/donut_10.png" alt="10">
+      </li>
+      <li [@listItemSortAnimation]="gridItemSevenState" id="grid-item grid-item-7" class="grid-item grid-item-7">
+        <img src="../assets/item-images/donuts/vertical/donut_7.png" alt="7">
+      </li>
+      <li [@listItemSortAnimation]="gridItemFourState" id="grid-item grid-item-4" class="grid-item grid-item-4">
+        <img src="../assets/item-images/donuts/vertical/donut_4.png" alt="4">
+      </li>
+      <li [@listItemSortAnimation]="gridItemEightState" id="grid-item grid-item-8" class="grid-item grid-item-8">
+        <img src="../assets/item-images/donuts/vertical/donut_8.png" alt="8">
+      </li>
+      <li [@listItemSortAnimation]="gridItemOneState" id="grid-item grid-item-1" class="grid-item grid-item-1">
+        <img src="../assets/item-images/donuts/vertical/donut_1.png" alt="1">
+      </li>
+      <li [@listItemSortAnimation]="gridItemFiveState" id="grid-item grid-item-5" class="grid-item grid-item-5">
+        <img src="../assets/item-images/donuts/vertical/donut_5.png" alt="5">
+      </li>
+      <li [@listItemSortAnimation]="gridItemNineState" id="grid-item grid-item-9" class="grid-item grid-item-9">
+        <img src="../assets/item-images/donuts/vertical/donut_9.png" alt="9">
+      </li>
+      <li [@listItemSortAnimation]="gridItemTwoState" id="grid-item grid-item-2" class="grid-item grid-item-2">
+        <img src="../assets/item-images/donuts/vertical/donut_2.png" alt="2">
+      </li>
+      <li [@listItemSortAnimation]="gridItemSixState" id="grid-item grid-item-6" class="grid-item grid-item-6">
+        <img src="../assets/item-images/donuts/vertical/donut_6.png" alt="6">
+      </li>
+    </ul>
+  </section>
+</div>
