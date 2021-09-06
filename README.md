@@ -1,3 +1,3 @@
-# SearchAlgorithmsVisualized
+# Algorithms Visualized
 
 

@@ -24,7 +24,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 })
 
 export class AppComponent {
-  title = 'search-algorithms-visualized';
+  title = 'algorithms-visualized';
   animationDuration: number = 1000;
 
   // initial positions never changes
