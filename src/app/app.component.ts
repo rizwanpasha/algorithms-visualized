@@ -17,7 +17,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
       state("8", style({ left: "70%" })),
       state("9", style({ left: "80%" })),
       state("10", style({ left: "90%" })),
-      transition('void => *', animate(0)), // skip animation at the begining
+      //transition('void => *', animate(0)), // skip animation at the begining
       transition('* <=> *', animate('1000ms linear'))
     ])
   ]
@@ -60,7 +60,6 @@ export class AppComponent {
   }
 
   randomize(currentItemsPositionValuesRef: string[]) {
-
     let numArray = [...currentItemsPositionValuesRef];
     let numArrayLength = numArray.length;
     let newItemsPositionValuesRef: string[] = [];
@@ -75,7 +74,6 @@ export class AppComponent {
   }
 
   doBubbleSort(currentItemsPositionValuesRef: string[]) {
-
     let newArray = [...currentItemsPositionValuesRef];
     let arrayLength = newArray.length;
     let allUpdatedPositionValuesArray: string[][] = [];
@@ -103,6 +101,24 @@ export class AppComponent {
           [newArray[j], newArray[i]] = [newArray[i], newArray[j]];
           allUpdatedPositionValuesArray.push([...newArray]);
         }
+      }
+    }
+
+    this.render(allUpdatedPositionValuesArray);
+  }
+
+  doInsertionSort(currentItemsPositionValuesRef: string[]) {
+    let newArray = [...currentItemsPositionValuesRef];
+    let arrayLength = newArray.length;
+    let allUpdatedPositionValuesArray: string[][] = [];
+
+    for (let i = 1; i < arrayLength; i++) {
+      let j = i;
+
+      while (j > 0 && Number(newArray[j - 1]) > Number(newArray[j])) {
+        [newArray[j - 1], newArray[j]] = [newArray[j], newArray[j - 1]];
+        allUpdatedPositionValuesArray.push([...newArray]);
+        j--;
       }
     }
 

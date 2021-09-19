@@ -3,9 +3,9 @@
     <mat-button-toggle-group name="selectSortingAlgorithm" aria-label="Select sorting algorithm">
       <mat-button-toggle (click)="doBubbleSort(currentItemsPositionValuesRef)">Bubble Sort</mat-button-toggle>
       <mat-button-toggle (click)="doSelectionSort(currentItemsPositionValuesRef)">Selection Sort</mat-button-toggle>
+      <mat-button-toggle (click)="doInsertionSort(currentItemsPositionValuesRef)">Insertion Sort</mat-button-toggle>
       <mat-button-toggle title="Coming Soon..." disabled>Merge Sort</mat-button-toggle>
       <mat-button-toggle title="Coming Soon..." disabled>Quick Sort</mat-button-toggle>
-      <mat-button-toggle title="Coming Soon..." disabled>Insertion Sort</mat-button-toggle>
     </mat-button-toggle-group>
     <button mat-raised-button (click)="randomize(currentItemsPositionValuesRef)" class="custom-button-style">Randomize</button>
    <a href="https://github.com/rizwanpasha/algorithms-visualized" title="Checkout source @ Github.com" class="github-logo-style" target="_blank">
