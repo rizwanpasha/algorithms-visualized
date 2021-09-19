@@ -31,7 +31,7 @@ export class AppComponent {
   initialItemsPositionValuesRef: string[] = ["3", "10", "7", "4", "8", "1", "5", "9", "2", "6"];
   currentItemsPositionValuesRef: string[] = [...this.initialItemsPositionValuesRef];
 
-  // initial item positions
+  // elements position ref for animation state
   gridItemOneState: string = "";
   gridItemTwoState: string = "";
   gridItemThreeState: string = "";
@@ -56,7 +56,7 @@ export class AppComponent {
     this.gridItemTenState = newItemsPositionValuesRef[9];
 
     this.currentItemsPositionValuesRef = [];
-    this.currentItemsPositionValuesRef = newItemsPositionValuesRef;
+    this.currentItemsPositionValuesRef = [...newItemsPositionValuesRef];
   }
 
   randomize(currentItemsPositionValuesRef: string[]) {
@@ -72,7 +72,6 @@ export class AppComponent {
     }
 
     this.updatePositions(newItemsPositionValuesRef);
-
   }
 
   doBubbleSort(currentItemsPositionValuesRef: string[]) {
@@ -85,28 +84,27 @@ export class AppComponent {
       for (let j = 0; j < arrayLength - i - 1; j++) {
         if (Number(newArray[j]) > Number(newArray[j + 1])) {
           [newArray[j], newArray[j + 1]] = [newArray[j + 1], newArray[j]];
+          allUpdatedPositionValuesArray.push([...newArray]);
         }
-        allUpdatedPositionValuesArray.push([...newArray]);
       }
     }
 
-    let count = -1;
+    this.render(allUpdatedPositionValuesArray);
+  }
+
+  render(allUpdatedPositionValuesArray: string[][]) {
+    let count = 0;
     let totalTimesToRender = allUpdatedPositionValuesArray.length;
     let intervalFunctionRef: any = null;
 
-    //call updatePositions() every 1s causing the animation to last 1s per iteration
     const renderFunction = () => {
-      count++;
       if (count < totalTimesToRender) {
-        if (count == 0) {
-          this.updatePositions([...allUpdatedPositionValuesArray[count]]);
-        } else {
-          setTimeout(() => {
-            this.updatePositions([...allUpdatedPositionValuesArray[count]]);
-          }, 1000)
-        }
+        this.updatePositions([...allUpdatedPositionValuesArray[count]]);
 
-        intervalFunctionRef = setTimeout(renderFunction, 1000);
+        intervalFunctionRef = setTimeout(() => {
+          count++;
+          renderFunction();
+        }, 1000)
       } else {
         clearTimeout(intervalFunctionRef);
       }
