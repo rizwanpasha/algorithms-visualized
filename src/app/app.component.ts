@@ -92,6 +92,23 @@ export class AppComponent {
     this.render(allUpdatedPositionValuesArray);
   }
 
+  doSelectionSort(currentItemsPositionValuesRef: string[]) {
+    let newArray = [...currentItemsPositionValuesRef];
+    let arrayLength = newArray.length;
+    let allUpdatedPositionValuesArray: string[][] = [];
+
+    for (let i = 0; i < arrayLength - 1; i++) {
+      for (let j = i + 1; j < arrayLength; j++) {
+        if (Number(newArray[j]) < Number(newArray[i])) {
+          [newArray[j], newArray[i]] = [newArray[i], newArray[j]];
+          allUpdatedPositionValuesArray.push([...newArray]);
+        }
+      }
+    }
+
+    this.render(allUpdatedPositionValuesArray);
+  }
+
   render(allUpdatedPositionValuesArray: string[][]) {
     let count = 0;
     let totalTimesToRender = allUpdatedPositionValuesArray.length;
