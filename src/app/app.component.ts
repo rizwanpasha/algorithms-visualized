@@ -24,8 +24,10 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 })
 
 export class AppComponent {
-  title = 'algorithms-visualized';
+  title: string = 'algorithms-visualized';
   animationDuration: number = 1000;
+  disableToggleGroup: boolean = false;
+  disableRandomize: boolean = false;
 
   // initial positions never changes
   initialItemsPositionValuesRef: string[] = ["3", "10", "7", "4", "8", "1", "5", "9", "2", "6"];
@@ -126,6 +128,8 @@ export class AppComponent {
   }
 
   render(allUpdatedPositionValuesArray: string[][]) {
+    this.disableAllButtons();
+
     let count = 0;
     let totalTimesToRender = allUpdatedPositionValuesArray.length;
     let intervalFunctionRef: any = null;
@@ -140,9 +144,20 @@ export class AppComponent {
         }, 1000)
       } else {
         clearTimeout(intervalFunctionRef);
+        this.enableAllButtons();
       }
     }
 
     renderFunction();
+  }
+
+  disableAllButtons() {
+    this.disableToggleGroup = true;
+    this.disableRandomize = true;
+  }
+
+  enableAllButtons() {
+    this.disableToggleGroup = false;
+    this.disableRandomize = false;
   }
 }

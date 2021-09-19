@@ -1,3 +1,7 @@
+* {
+  font-size: 16px !important;
+}
+
 .container {
   width: 100vw;
 }
@@ -69,6 +73,12 @@
   padding-right: 12px;
   line-height: 48px;
   margin-left: 24px;
+}
+
+.custom-button-style[disabled="true"] {
+  color: rgba(0,0,0,.26);
+  background: #fff;
+  border-left: solid 1px rgba(0,0,0,.12);
 }
 
 .github-logo-style {
