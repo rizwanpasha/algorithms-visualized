@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
@@ -23,40 +23,53 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ]
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  ngOnInit() {
+    this.updatePositions(this.initialItemsPositionValuesRef);
+  }
   title: string = 'algorithms-visualized';
   animationDuration: number = 1000;
   disableToggleGroup: boolean = false;
   disableDropdown: boolean = false;
   disableRandomize: boolean = false;
 
-  // initial positions never changes
+  // index = position of the donut
+  // value = number of donuts
   initialItemsPositionValuesRef: string[] = ["3", "10", "7", "4", "8", "1", "5", "9", "2", "6"];
   currentItemsPositionValuesRef: string[] = [...this.initialItemsPositionValuesRef];
 
   // elements position ref for animation state
-  gridItemOneState: string = "";
-  gridItemTwoState: string = "";
-  gridItemThreeState: string = "";
-  gridItemFourState: string = "";
-  gridItemFiveState: string = "";
-  gridItemSixState: string = "";
-  gridItemSevenState: string = "";
-  gridItemEightState: string = "";
-  gridItemNineState: string = "";
-  gridItemTenState: string = "";
+  // number of donuts = position of donuts
+  gridItemOneState: string = "3";
+  gridItemTwoState: string = "10";
+  gridItemThreeState: string = "7";
+  gridItemFourState: string = "4";
+  gridItemFiveState: string = "8";
+  gridItemSixState: string = "1";
+  gridItemSevenState: string = "5";
+  gridItemEightState: string = "9";
+  gridItemNineState: string = "2";
+  gridItemTenState: string = "6";
 
   updatePositions(newItemsPositionValuesRef: string[]) {
-    this.gridItemOneState = newItemsPositionValuesRef[0];
-    this.gridItemTwoState = newItemsPositionValuesRef[1];
-    this.gridItemThreeState = newItemsPositionValuesRef[2];
-    this.gridItemFourState = newItemsPositionValuesRef[3];
-    this.gridItemFiveState = newItemsPositionValuesRef[4];
-    this.gridItemSixState = newItemsPositionValuesRef[5];
-    this.gridItemSevenState = newItemsPositionValuesRef[6];
-    this.gridItemEightState = newItemsPositionValuesRef[7];
-    this.gridItemNineState = newItemsPositionValuesRef[8];
-    this.gridItemTenState = newItemsPositionValuesRef[9];
+    newItemsPositionValuesRef.map((value, index) => {
+      let element = value;
+      let position = (index + 1).toString();
+
+      switch (element) {
+        case "1": this.gridItemOneState = position; break;
+        case "2": this.gridItemTwoState = position; break;
+        case "3": this.gridItemThreeState = position; break;
+        case "4": this.gridItemFourState = position; break;
+        case "5": this.gridItemFiveState = position; break;
+        case "6": this.gridItemSixState = position; break;
+        case "7": this.gridItemSevenState = position; break;
+        case "8": this.gridItemEightState = position; break;
+        case "9": this.gridItemNineState = position; break;
+        case "10": this.gridItemTenState = position; break;
+      }
+    });
 
     this.currentItemsPositionValuesRef = [];
     this.currentItemsPositionValuesRef = [...newItemsPositionValuesRef];
@@ -85,8 +98,8 @@ export class AppComponent {
       for (let j = 0; j < arrayLength - i - 1; j++) {
         if (Number(newArray[j]) > Number(newArray[j + 1])) {
           [newArray[j], newArray[j + 1]] = [newArray[j + 1], newArray[j]];
-          allUpdatedPositionValuesArray.push([...newArray]);
         }
+        allUpdatedPositionValuesArray.push([...newArray]);
       }
     }
 
@@ -128,6 +141,9 @@ export class AppComponent {
     this.render(allUpdatedPositionValuesArray);
   }
 
+  count = 0;
+  max = 1;
+
   render(allUpdatedPositionValuesArray: string[][]) {
     this.disableAllButtons();
 
@@ -136,6 +152,9 @@ export class AppComponent {
     let intervalFunctionRef: any = null;
 
     const renderFunction = () => {
+      // if (this.count <= this.max) {
+      this.count++;
+
       if (count < totalTimesToRender) {
         this.updatePositions([...allUpdatedPositionValuesArray[count]]);
 
@@ -147,6 +166,7 @@ export class AppComponent {
         clearTimeout(intervalFunctionRef);
         this.enableAllButtons();
       }
+      //}
     }
 
     renderFunction();
