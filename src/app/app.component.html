@@ -7,6 +7,16 @@
       <mat-button-toggle title="Coming Soon..." disabled>Merge Sort</mat-button-toggle>
       <mat-button-toggle title="Coming Soon..." disabled>Quick Sort</mat-button-toggle>
     </mat-button-toggle-group>
+    <mat-form-field id="dropdown">
+      <mat-label>Select Sort Algorithm</mat-label>
+      <mat-select [disabled]="disableDropdown">
+        <mat-option value="">Bubble Sort</mat-option>
+        <mat-option value="">Selection Sort</mat-option>
+        <mat-option value="">Insertion Sort</mat-option>
+        <mat-option value="">Merge Sort</mat-option>
+        <mat-option value="">Quick Sort</mat-option>
+      </mat-select> 
+    </mat-form-field>
     <button [disabled]="disableRandomize" mat-raised-button (click)="randomize(currentItemsPositionValuesRef)" class="custom-button-style">Randomize</button>
    <a href="https://github.com/rizwanpasha/algorithms-visualized" title="Checkout source @ Github.com" class="github-logo-style" target="_blank">
     <img src="./assets/icons/GitHub_Logo.png" alt="Github Logo" height="48px" width="48px">

@@ -27,6 +27,7 @@ export class AppComponent {
   title: string = 'algorithms-visualized';
   animationDuration: number = 1000;
   disableToggleGroup: boolean = false;
+  disableDropdown: boolean = false;
   disableRandomize: boolean = false;
 
   // initial positions never changes
@@ -153,11 +154,13 @@ export class AppComponent {
 
   disableAllButtons() {
     this.disableToggleGroup = true;
+    this.disableDropdown = true;
     this.disableRandomize = true;
   }
 
   enableAllButtons() {
     this.disableToggleGroup = false;
+    this.disableDropdown = false;
     this.disableRandomize = false;
   }
 }
