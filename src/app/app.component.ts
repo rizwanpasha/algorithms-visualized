@@ -54,14 +54,14 @@ export class AppComponent {
   gridItemNineState: string = "2";
   gridItemTenState: string = "6";
 
-  constructor(private _snackBar: MatSnackBar) {};
+  constructor(private _snackBar: MatSnackBar) { };
 
   ngOnInit() {
     this.updatePositions(this.initialItemsPositionValuesRef);
   }
 
   openSnackBar(message: string) {
-    this._snackBar.open(message, "Close");
+    this._snackBar.open(message, "Close", { duration: 3000 });
   }
 
   startSort(option: string) {
