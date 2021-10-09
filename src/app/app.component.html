@@ -1,26 +1,37 @@
 <div class="container">
   <mat-toolbar color="primary">
-    <mat-button-toggle-group [disabled]="disableToggleGroup" id="togglegroup" name="selectSortingAlgorithm" aria-label="Select sorting algorithm">
-      <mat-button-toggle (click)="doBubbleSort(currentItemsPositionValuesRef)">Bubble Sort</mat-button-toggle>
-      <mat-button-toggle (click)="doSelectionSort(currentItemsPositionValuesRef)">Selection Sort</mat-button-toggle>
-      <mat-button-toggle (click)="doInsertionSort(currentItemsPositionValuesRef)">Insertion Sort</mat-button-toggle>
-      <mat-button-toggle title="Coming Soon..." disabled>Merge Sort</mat-button-toggle>
-      <mat-button-toggle title="Coming Soon..." disabled>Quick Sort</mat-button-toggle>
+    <mat-button-toggle-group [disabled]="disableToggleGroup" id="togglegroup" name="selectSortingAlgorithm"
+      aria-label="Select sorting algorithm">
+      <mat-button-toggle matTooltip="Bubble Sort" (click)="startSort('Bubble Sort')">Bubble Sort</mat-button-toggle>
+      <mat-button-toggle matTooltip="Selection Sort" (click)="startSort('Selection Sort')">Selection Sort
+      </mat-button-toggle>
+      <mat-button-toggle matTooltip="Insertion Sort" (click)="startSort('Insertion Sort')">Insertion Sort
+      </mat-button-toggle>
+      <mat-button-toggle matTooltip="Coming Soon..." disabled>Merge Sort</mat-button-toggle>
+      <mat-button-toggle matTooltip="Coming Soon..." disabled>Quick Sort</mat-button-toggle>
     </mat-button-toggle-group>
     <mat-form-field id="dropdown">
       <mat-label>Select Sort Algorithm</mat-label>
-      <mat-select [disabled]="disableDropdown">
-        <mat-option value="">Bubble Sort</mat-option>
-        <mat-option value="">Selection Sort</mat-option>
-        <mat-option value="">Insertion Sort</mat-option>
-        <mat-option value="">Merge Sort</mat-option>
-        <mat-option value="">Quick Sort</mat-option>
-      </mat-select> 
+      <mat-select [disabled]="disableDropdown" [(value)]="defaultDropDownOptions" #sortDropDownMenuRef>
+        <mat-option value="Bubble Sort">Bubble Sort</mat-option>
+        <mat-option value="Selection Sort">Selection Sort</mat-option>
+        <mat-option value="Insertion Sort">Insertion Sort</mat-option>
+        <mat-option matTooltip="Coming Soon..." disabled value="Merge Sort">Merge Sort</mat-option>
+        <mat-option matTooltip="Coming Soon..." disabled value="Quick Sort">Quick Sort</mat-option>
+      </mat-select>
     </mat-form-field>
-    <button [disabled]="disableRandomize" mat-raised-button (click)="randomize(currentItemsPositionValuesRef)" class="custom-button-style">Randomize</button>
-   <a href="https://github.com/rizwanpasha/algorithms-visualized" title="Checkout source @ Github.com" class="github-logo-style" target="_blank">
-    <img src="./assets/icons/GitHub_Logo.png" alt="Github Logo" height="48px" width="48px">
-   </a>
+    <button id="start-sort" [disabled]="disableStartButton" (click)="startSort('')" mat-raised-button
+      matTooltip="Start Sort" class="custom-button-style">
+      <mat-icon aria-hidden="false" aria-label="Begin Sort">play_arrow</mat-icon>
+    </button>
+    <button [disabled]="disableRandomize" mat-raised-button matTooltip="Shuffle Order"
+      (click)="randomize(currentItemsPositionValuesRef)" class="custom-button-style">
+      <mat-icon aria-hidden="false" aria-label="Shuffle Order">shuffle</mat-icon>
+    </button>
+    <a href="https://github.com/rizwanpasha/algorithms-visualized" title="Checkout source @ Github.com"
+      class="github-logo-style" target="_blank">
+      <img src="./assets/icons/GitHub_Logo.png" alt="Github Logo" height="48px" width="48px">
+    </a>
   </mat-toolbar>
   <section class="main-wrapper">
     <ul class="grid-list">

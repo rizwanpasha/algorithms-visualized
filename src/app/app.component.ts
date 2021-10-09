@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'app-root',
@@ -23,16 +24,15 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ]
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent {
+  @ViewChild('sortDropDownMenuRef') sortDropDownMenuRef !: MatSelect;
 
-  ngOnInit() {
-    this.updatePositions(this.initialItemsPositionValuesRef);
-  }
   title: string = 'algorithms-visualized';
-  animationDuration: number = 1000;
   disableToggleGroup: boolean = false;
   disableDropdown: boolean = false;
   disableRandomize: boolean = false;
+  disableStartButton: boolean = false;
+  defaultDropDownOptions = "Bubble Sort";
 
   // index = position of the donut
   // value = number of donuts
@@ -51,6 +51,31 @@ export class AppComponent implements OnInit {
   gridItemEightState: string = "9";
   gridItemNineState: string = "2";
   gridItemTenState: string = "6";
+
+  ngOnInit() {
+    this.updatePositions(this.initialItemsPositionValuesRef);
+  }
+
+  startSort(option: string) {
+    if (this.disableToggleGroup && this.defaultDropDownOptions) return;
+
+    let selectedOption = "";
+
+    if (option === "") {
+      selectedOption = this.sortDropDownMenuRef.value;
+    } else {
+      selectedOption = option;
+    }
+
+    switch (selectedOption) {
+      case "Bubble Sort": this.doBubbleSort(this.currentItemsPositionValuesRef);
+        break;
+      case "Selection Sort": this.doSelectionSort(this.currentItemsPositionValuesRef);
+        break;
+      case "Insertion Sort": this.doInsertionSort(this.currentItemsPositionValuesRef);
+        break;
+    }
+  }
 
   updatePositions(newItemsPositionValuesRef: string[]) {
     newItemsPositionValuesRef.map((value, index) => {
@@ -141,9 +166,6 @@ export class AppComponent implements OnInit {
     this.render(allUpdatedPositionValuesArray);
   }
 
-  count = 0;
-  max = 1;
-
   render(allUpdatedPositionValuesArray: string[][]) {
     this.disableAllButtons();
 
@@ -152,9 +174,6 @@ export class AppComponent implements OnInit {
     let intervalFunctionRef: any = null;
 
     const renderFunction = () => {
-      // if (this.count <= this.max) {
-      this.count++;
-
       if (count < totalTimesToRender) {
         this.updatePositions([...allUpdatedPositionValuesArray[count]]);
 
@@ -166,7 +185,6 @@ export class AppComponent implements OnInit {
         clearTimeout(intervalFunctionRef);
         this.enableAllButtons();
       }
-      //}
     }
 
     renderFunction();
@@ -176,11 +194,13 @@ export class AppComponent implements OnInit {
     this.disableToggleGroup = true;
     this.disableDropdown = true;
     this.disableRandomize = true;
+    this.disableStartButton = true;
   }
 
   enableAllButtons() {
     this.disableToggleGroup = false;
     this.disableDropdown = false;
     this.disableRandomize = false;
+    this.disableStartButton = false;
   }
 }
