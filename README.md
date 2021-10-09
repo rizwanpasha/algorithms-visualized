@@ -4,4 +4,4 @@
 
 ## Previews
 
-![Bubble Sort Preview](./src/assets/preview/bubble-sort.png "Bubble Sort")
+![Bubble Sort Visualized](./src/assets/preview/algorithms-visualized-video-intro.gif)
