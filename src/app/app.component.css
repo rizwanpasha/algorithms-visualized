@@ -7,7 +7,8 @@
 }
 
 .main-wrapper {
-  width: 100%;
+  width: 90%;
+  margin: auto;
 }
 
 .grid-list {
@@ -29,9 +30,23 @@
   width: 100%;
 }
 
+.grid-list .grid-item .status-icons img {
+  width: 50%;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  transform: translateX(50%);
+  visibility: hidden;
+}
+
+.grid-list .grid-item .status-icons .sort-done-check-mark.active,
+.grid-list .grid-item .status-icons .sort-active-mark.active {
+  visibility: visible;
+}
+
 @media screen and (min-width: 695px) {
   .main-wrapper {
-    width: 50%;
+    width: 60%;
     margin: auto;
   }
 }
