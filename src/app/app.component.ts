@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { MatSelect } from '@angular/material/select';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -33,6 +34,7 @@ export class AppComponent {
   disableRandomize: boolean = false;
   disableStartButton: boolean = false;
   defaultDropDownOptions = "Bubble Sort";
+  currentSortType = "";
 
   // index = position of the donut
   // value = number of donuts
@@ -52,8 +54,14 @@ export class AppComponent {
   gridItemNineState: string = "2";
   gridItemTenState: string = "6";
 
+  constructor(private _snackBar: MatSnackBar) {};
+
   ngOnInit() {
     this.updatePositions(this.initialItemsPositionValuesRef);
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, "Close");
   }
 
   startSort(option: string) {
@@ -66,6 +74,9 @@ export class AppComponent {
     } else {
       selectedOption = option;
     }
+
+    this.currentSortType = selectedOption;
+    this.openSnackBar(this.currentSortType + "ing 🎉🎉");
 
     switch (selectedOption) {
       case "Bubble Sort": this.doBubbleSort(this.currentItemsPositionValuesRef);
@@ -184,6 +195,8 @@ export class AppComponent {
       } else {
         clearTimeout(intervalFunctionRef);
         this.enableAllButtons();
+        this.openSnackBar(this.currentSortType + " Done 🎉🎉🎉🎉");
+        this.currentSortType = "";
       }
     }
 
